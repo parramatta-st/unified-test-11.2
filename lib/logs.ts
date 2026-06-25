@@ -3,7 +3,7 @@ import { appendSheetRows, loadRowsPrivateFirst, privateSheetsConfigured, sheetNa
 export const FEEDBACK_LOG_HEADERS = [
   'timestamp', 'campusKey', 'campusName', 'tutorName', 'studentId', 'studentName', 'studentFirstName', 'studentLastName', 'studentYear',
   'parentName', 'parentEmail', 'mode', 'feedbackType', 'programKey', 'programLabel', 'templateIndex', 'lessonNumber', 'assessmentName',
-  'completionStatus', 'sourceForm', 'year', 'subject', 'strand', 'lesson', 'topic', 'subjectLine', 'messageId', 'raw'
+  'completionStatus', 'sourceForm', 'year', 'subject', 'strand', 'lesson', 'topic', 'subjectLine', 'messageId'
 ];
 
 export const PRINT_LOG_HEADERS = [
@@ -43,7 +43,6 @@ export async function appendFeedbackLog(payload: any) {
   if (!privateSheetsConfigured()) return { saved: false, reason: 'private sheets not configured' };
   const row: Record<string, any> = { ...payload };
   row.timestamp = row.timestamp || row.when || new Date().toISOString();
-  row.raw = JSON.stringify(payload || {});
   await appendSheetRows(sheetNames.feedbackLog(), FEEDBACK_LOG_HEADERS, [row], spreadsheetIdFor('FEEDBACK_LOG'));
   return { saved: true };
 }

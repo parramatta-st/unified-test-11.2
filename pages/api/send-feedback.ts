@@ -60,7 +60,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       campusKey: meta?.campusKey || auth.campus || 'parramatta',
       campusName: meta?.campusName || campusName,
       tutorName: meta?.tutorName || auth.tutor || '',
-      studentId: '', // intentionally blank: contact IDs can be reassigned in older data
+      studentId: meta?.studentId || '',
       studentName: meta?.studentName || toName || '',
       studentFirstName: meta?.studentFirstName || (String(toName).split(/\s+/)[0] || ''),
       studentLastName: meta?.studentLastName || '',
