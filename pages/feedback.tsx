@@ -387,7 +387,7 @@ function handleCustomChange(v: string) {
         campusKey,
         campusName,
         tutorName,
-        studentId: '', // intentionally blank because contact IDs can be reassigned
+        studentId: selectedStudent?.id || '',
         studentName: selectedStudent?.name || student,
         studentFirstName: selectedStudent?.firstName || firstName || student,
         studentLastName: selectedStudent?.lastName || '',
